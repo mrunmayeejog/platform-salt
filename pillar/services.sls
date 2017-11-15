@@ -62,7 +62,7 @@ gobblin:
   release_version: develop
 
 console_frontend:
-  release_version: PNDA-2822-validate
+  release_version: PNDA-2282-validate
 
 console_backend_data_logger:
   release_version: develop
@@ -89,7 +89,7 @@ hdfs_cleaner:
 
 platform_testing:
   release_directory: /opt/pnda
-  release_version: PNDA-2822-validate
+  release_version: PNDA-2282-validate
 
 platformlib:
   release_version: develop
