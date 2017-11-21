@@ -62,7 +62,7 @@ gobblin:
   release_version: develop
 
 console_frontend:
-  release_version: PNDA-2282-validate
+  release_version: develop
 
 console_backend_data_logger:
   release_version: develop
