@@ -163,14 +163,60 @@ BLUEPRINT = r'''{
                     "yarn.scheduler.minimum-allocation-vcores" : "1",
                     "yarn.scheduler.minimum-allocation-mb" : "256",
                     "yarn.scheduler.maximum-allocation-mb" : "4096",
-                    "yarn.scheduler.maximum-allocation-vcores" : "8"
+                    "yarn.scheduler.maximum-allocation-vcores" : "8",
+                    "yarn.acl.enable" : "true"
                 }
             }
         },
         {
             "capacity-scheduler" : {
                 "properties" : {
-                    "yarn.scheduler.capacity.maximum-am-resource-percent" : "1.0"
+                    "yarn.scheduler.capacity.root.application.dev.acl_submit_applications" : "dev1 dev",
+                    "yarn.scheduler.capacity.root.application.dev.minimum-user-limit-percent" : "100",
+                    "yarn.scheduler.capacity.root.application.prod.acl_submit_applications" : "prod1 prod",
+                    "yarn.scheduler.capacity.root.acl_submit_applications" : "yarn,hdfs hadoop",
+                    "yarn.scheduler.capacity.root.application.acl_administer_queue" : " ",
+                    "yarn.scheduler.capacity.root.acl_administer_queue" : "yarn,hdfs hadoop",
+                    "yarn.scheduler.capacity.root.application.minimum-user-limit-percent" : "100",
+                    "yarn.scheduler.capacity.root.queues" : "application,system",
+                    "yarn.scheduler.capacity.root.application.dev.capacity" : "50",
+                    "yarn.scheduler.capacity.root.application.prod.acl_administer_queue" : "prod1 prod",
+                    "yarn.scheduler.capacity.root.system.user-limit-factor" : "1",
+                    "yarn.scheduler.capacity.maximum-applications" : "10000",
+                    "yarn.scheduler.capacity.queue-mappings-override.enable" : "false",
+                    "yarn.scheduler.capacity.root.system.priority" : "0",
+                    "yarn.scheduler.capacity.root.system.capacity" : "50",
+                    "yarn.scheduler.capacity.root.application.prod.user-limit-factor" : "1",
+                    "yarn.scheduler.capacity.root.system.maximum-capacity" : "100",
+                    "yarn.scheduler.capacity.root.application.user-limit-factor" : "1",
+                    "yarn.scheduler.capacity.root.application.state" : "RUNNING",
+                    "yarn.scheduler.capacity.root.system.minimum-user-limit-percent" : "100",
+                    "yarn.scheduler.capacity.root.application.maximum-capacity" : "80",
+                    "yarn.scheduler.capacity.root.system.state" : "RUNNING",
+                    "yarn.scheduler.capacity.root.application.dev.acl_administer_queue" : "dev1 dev",
+                    "yarn.scheduler.capacity.root.application.acl_submit_applications" : " ",
+                    "yarn.scheduler.capacity.root.application.dev.state" : "RUNNING",
+                    "yarn.scheduler.capacity.maximum-am-resource-percent" : "1",
+                    "yarn.scheduler.capacity.root.application.dev.ordering-policy" : "fifo",
+                    "yarn.scheduler.capacity.root.application.prod.ordering-policy" : "fifo",
+                    "yarn.scheduler.capacity.root.application.dev.priority" : "0",
+                    "yarn.scheduler.capacity.root.application.prod.state" : "RUNNING",
+                    "yarn.scheduler.capacity.root.system.ordering-policy" : "fair",
+                    "yarn.scheduler.capacity.root.system.acl_submit_applications" : "pnda ",
+                    "yarn.scheduler.capacity.root.application.dev.user-limit-factor" : "1",
+                    "yarn.scheduler.capacity.root.application.prod.maximum-capacity" : "100",
+                    "yarn.scheduler.capacity.root.application.queues" : "dev,prod",
+                    "yarn.scheduler.capacity.root.accessible-node-labels" : "*",
+                    "yarn.scheduler.capacity.root.application.dev.maximum-capacity" : "50",
+                    "yarn.scheduler.capacity.root.application.prod.priority" : "0",
+                    "yarn.scheduler.capacity.root.priority" : "0",
+                    "yarn.scheduler.capacity.root.application.prod.minimum-user-limit-percent" : "100",
+                    "yarn.scheduler.capacity.root.application.prod.capacity" : "50",
+                    "yarn.scheduler.capacity.root.capacity" : "100",
+                    "yarn.scheduler.capacity.node-locality-delay" : "40",
+                    "yarn.scheduler.capacity.root.application.capacity" : "50",
+                    "yarn.scheduler.capacity.root.system.acl_administer_queue" : "pnda ",
+                    "yarn.scheduler.capacity.root.application.priority" : "0"
                 }
             }
         },
