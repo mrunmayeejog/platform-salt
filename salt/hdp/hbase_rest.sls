@@ -1,5 +1,5 @@
 {% set rest_port = pillar['hdp']['hbase-rest']['port'] %}
-{% set info_port = pillar['hdp']['hbase-rest']['info_port'] %}
+{% set info_port = pillar['hdp']['hbase-rest']['info-port'] %}
 
 {% if grains['os'] == 'Ubuntu' %}
 /etc/init/hbase-rest.conf:
