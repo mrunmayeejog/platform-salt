@@ -104,3 +104,6 @@ unzip:
 wget:
   package-name: wget
   version: ""
+libmysqlclient-dev:
+  package-name: libmysqlclient-dev
+  version: ""
