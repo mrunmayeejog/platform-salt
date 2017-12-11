@@ -30,9 +30,6 @@ glibc-devel:
   version: ""
 grafana:
   package-source: 'grafana_4.2.0_amd64.deb'
-libkrb5-dev:
-  package-name: libkrb5-dev
-  version:  ""
 libmysql-java:
   package-name: libmysql-java
   version: "5.1.28-1"
