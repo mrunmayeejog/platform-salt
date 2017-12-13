@@ -103,7 +103,7 @@ jupyter-copy_data_generator_script:
 
 
 
-##### impala
+{% if pillar['hadoop.distro'] == 'CDH' %}
 dependency-configurations-python2:
  cmd.run:
     - name: sed -i "s/if 'mssql' not in str(conn.dialect):/if config.autocommit and ('mssql' not in str(conn.dialect)):/" {{ ipython2_path }}/run.py && sed -i '/def __init__(self, shell):/i \    autocommit = Bool(True, config=True, help="Set autocommit mode")\n' {{ ipython2_path }}/magic.py
@@ -111,3 +111,4 @@ dependency-configurations-python2:
 dependency-configurations-python3:
   cmd.run:
     - name: sed -i "s/if 'mssql' not in str(conn.dialect):/if config.autocommit and ('mssql' not in str(conn.dialect)):/" {{ ipython3_path }}/run.py && sed -i '/def __init__(self, shell):/i \    autocommit = Bool(True, config=True, help="Set autocommit mode")\n' {{ ipython3_path }}/magic.py
+{% endif %}
