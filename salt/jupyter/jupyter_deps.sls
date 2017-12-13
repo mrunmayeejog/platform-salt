@@ -6,11 +6,53 @@
 {% set anaconda_home = '/opt/cloudera/parcels/Anaconda' %}
 {% endif %}
 
-install-postgresql:
-  pkg.installed:
-    - name: {{ pillar['postgresql']['package-name'] }}
-    - version: {{ pillar['postgresql']['version'] }}
-    - ignore_epoch: True
+{% set pnda_mirror = pillar['pnda_mirror']['base_url'] %}
+{% set deb_packages_path = pnda_mirror + '/mirror_deb' %}
+{% set pnda_home_directory = pillar['pnda']['homedir'] %}
+
+{% set dependency_name_libgssrpc = 'libgssrpc4_1.12+dfsg-2ubuntu5.3_amd64.deb' %}
+{% set dependency_name_libkdb5 = 'libkdb5-7_1.12+dfsg-2ubuntu5.3_amd64.deb' %}
+{% set dependency_name_libkadm5srv = 'libkadm5srv-mit9_1.12+dfsg-2ubuntu5.3_amd64.deb' %}
+{% set dependency_name_libkadm5clnt = 'libkadm5clnt-mit9_1.12+dfsg-2ubuntu5.3_amd64.deb' %}
+{% set dependency_name_comerr = 'comerr-dev_2.1-1.42.9-3ubuntu1.3_amd64.deb' %}
+{% set dependency_name_krb5 = 'krb5-multidev_1.12+dfsg-2ubuntu5.3_amd64.deb' %}
+{% set dependency_name_libpq = 'libpq-dev_9.3.20-0ubuntu0.14.04_amd64.deb' %}
+
+lib_install-dependency-1:
+  cmd.run:
+    - cwd: {{ pnda_home_directory }}
+    - name: wget {{ deb_packages_path }}/{{ dependency_name_libgssrpc }} && dpkg -i {{ dependency_name_libgssrpc }}
+
+lib_install-dependency-2:
+  cmd.run:
+    - cwd: {{ pnda_home_directory }}
+    - name: wget {{ deb_packages_path }}/{{ dependency_name_libkdb5 }} && dpkg -i {{ dependency_name_libkdb5 }}
+
+lib_install-dependency-3:
+  cmd.run:
+    - cwd: {{ pnda_home_directory }}
+    - name: wget {{ deb_packages_path }}/{{ dependency_name_libkadm5srv }} && dpkg -i {{ dependency_name_libkadm5srv }}
+
+lib_install-dependency-4:
+  cmd.run:
+    - cwd: {{ pnda_home_directory }}
+    - name: wget {{ deb_packages_path }}/{{ dependency_name_libkadm5clnt }} && dpkg -i {{ dependency_name_libkadm5clnt }}
+
+lib_install-dependency-5:
+  cmd.run:
+    - cwd: {{ pnda_home_directory }}
+    - name: wget {{ deb_packages_path }}/{{ dependency_name_comerr }} && dpkg -i {{ dependency_name_comerr }}
+
+lib_install-dependency-6:
+  cmd.run:
+    - cwd: {{ pnda_home_directory }}
+    - name: wget {{ deb_packages_path }}/{{ dependency_name_krb5 }} && dpkg -i {{ dependency_name_krb5 }}
+
+lib_install-dependency-7:
+  cmd.run:
+    - cwd: {{ pnda_home_directory }}
+    - name: wget {{ deb_packages_path }}/{{ dependency_name_libpq }} && dpkg -i {{ dependency_name_libpq }}
+
 
 jupyter-install_anaconda_deps:
   cmd.run:
