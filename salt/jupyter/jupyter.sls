@@ -6,7 +6,7 @@
 {% set jupyter_extension_venv = pnda_home_directory + '/jupyter-extensions' %}
 {% set pnda_user  = pillar['pnda']['user'] %}
 
-{% if pillar['hadoop.distro'] == 'HDP' %}
+{% if grains['hadoop.distro'] == 'HDP' %}
 {% set anaconda_home = '/opt/pnda/anaconda' %}
 {% set spark_home = '/usr/hdp/current/spark-client' %}
 {% set hadoop_conf_dir = '/etc/hadoop/conf' %}
@@ -103,7 +103,7 @@ jupyter-copy_data_generator_script:
 
 
 
-{% if pillar['hadoop.distro'] == 'CDH' %}
+{% if grains['hadoop.distro'] == 'CDH' %}
 dependency-configurations-python2:
  cmd.run:
     - name: sed -i "s/if 'mssql' not in str(conn.dialect):/if config.autocommit and ('mssql' not in str(conn.dialect)):/" {{ ipython2_path }}/run.py && sed -i '/def __init__(self, shell):/i \    autocommit = Bool(True, config=True, help="Set autocommit mode")\n' {{ ipython2_path }}/magic.py
