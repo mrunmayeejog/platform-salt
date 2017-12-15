@@ -101,3 +101,6 @@ unzip:
 wget:
   package-name: wget
   version: ""
+postgresql:
+  package-name: postgresql
+  version: ""

@@ -16,10 +16,17 @@
 {% set hadoop_conf_dir = '/etc/hadoop/conf.cloudera.yarn01' %}
 {% endif %}
 
+
+{% set ipython2_path = anaconda_home + '/lib/python2.7/site-packages/sql' %}
+{% set ipython3_path = virtual_env_dir + '/lib/python3.4/site-packages/sql' %}
+
+
+
 include:
   - python-pip
   - python-pip.pip3
   - .jupyter_deps
+
 
 jupyter-create-venv:
   virtualenv.managed:
@@ -52,7 +59,7 @@ jupyter-create_pam_login_script:
     - template: jinja
     - defaults:
       example_notebooks_dir: '{{ pnda_home_directory }}/jupyter_notebooks'
-      pnda_user: {{ pnda_user }} 
+      pnda_user: {{ pnda_user }}
 
 jupyter-create_pam_login_rule:
   file.append:
@@ -92,3 +99,16 @@ jupyter-copy_data_generator_script:
     - source: salt://jupyter/files/data_generator.py
     - name: {{ pnda_home_directory }}/data_generator.py
     - mode: 555
+
+
+
+
+{% if grains['hadoop.distro'] == 'CDH' %}
+dependency-configurations-python2:
+ cmd.run:
+    - name: sed -i "s/if 'mssql' not in str(conn.dialect):/if config.autocommit and ('mssql' not in str(conn.dialect)):/" {{ ipython2_path }}/run.py && sed -i '/def __init__(self, shell):/i \    autocommit = Bool(True, config=True, help="Set autocommit mode")\n' {{ ipython2_path }}/magic.py
+
+dependency-configurations-python3:
+  cmd.run:
+    - name: sed -i "s/if 'mssql' not in str(conn.dialect):/if config.autocommit and ('mssql' not in str(conn.dialect)):/" {{ ipython3_path }}/run.py && sed -i '/def __init__(self, shell):/i \    autocommit = Bool(True, config=True, help="Set autocommit mode")\n' {{ ipython3_path }}/magic.py
+{% endif %}

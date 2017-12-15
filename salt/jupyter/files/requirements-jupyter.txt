@@ -33,3 +33,9 @@ tornado==4.4.2
 traitlets==4.3.1
 wcwidth==0.1.7
 widgetsnbextension==2.0.0
+pymysql==0.7.11
+sql-magic==0.0.3
+impyla==0.14.0
+psycopg2==2.7.3.2
+ipython-sql==0.3.8
+thrift==0.9.3
