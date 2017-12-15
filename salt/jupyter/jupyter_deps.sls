@@ -1,4 +1,5 @@
 {% set pip_index_url = pillar['pip']['index_url'] %}
+{% set pnda_home_directory = pillar['pnda']['homedir'] %}
 
 {% if grains['hadoop.distro'] == 'HDP' %}
 {% set anaconda_home = '/opt/pnda/anaconda' %}
@@ -8,8 +9,8 @@
 
 {% set pnda_mirror = pillar['pnda_mirror']['base_url'] %}
 {% set deb_packages_path = pnda_mirror + '/mirror_deb' %}
-{% set rpm_packages_path = pnda_mirror + '/mirror_rpm' %}
-{% set pnda_home_directory = pillar['pnda']['homedir'] %}
+{% set misc_packages_path = pillar['pnda_mirror']['misc_packages_path'] %}
+{% set misc_mirror_location = pnda_mirror + misc_packages_path %}
 
 {% if grains['os'] == 'Ubuntu' %}
 {% set dependency_name_libgssrpc = 'libgssrpc4_1.12+dfsg-2ubuntu5.3_amd64.deb' %}
@@ -64,17 +65,17 @@ lib_install-dependency-7:
 lib_install-dependency-8:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
-    - name: wget {{ rpm_packages_path }}/{{ dependency_name_postgresql_lib }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql_lib }}
+    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql_lib }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql_lib }}
 
 lib_install-dependency-9:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
-    - name: wget {{ rpm_packages_path }}/{{ dependency_name_postgresql }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql }}
+    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql }}
 
 lib_install-dependency-10:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
-    - name: wget {{ rpm_packages_path }}/{{ dependency_name_postgresql_devel }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql_devel }}
+    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql_devel }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql_devel }}
 
 {% endif %}
 
