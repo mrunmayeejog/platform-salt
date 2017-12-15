@@ -131,7 +131,7 @@ livy-create_logs_dir:
     - mode: 766
     - makedirs: True
 
-{% if pillar['hadoop.distro'] == 'HDP' %}
+{% if grains['hadoop.distro'] == 'HDP' %}
 livy-update_configuration_hdp:
   file.append:
     - name: {{ livy_dir }}/conf/livy.conf
