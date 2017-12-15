@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+- PNDA-3580: Add spark cli that implements a user/group placement policy.
+### Changed
+- PNDA-3545: Configure Hive and Hive2 Ambari views to run as the hdfs super user
+- PNDA-3555: Use /pnda/deployment as HDFS library location
+- PNDA-3583: hadoop distro is now part of grains
+- PNDA-2540: Stop supplying 'cloud-user' as the default operating system user as this is deployment specific and must be supplied in the pnda-env.yaml
+
+### Fixed
+- PNDA-3573: remove eth0 default value on kafka
+- PNDA-3553: Configure PNDA log aggregation to use HDP specific paths when collecting hadoop service logs on HDP
+
+## [3.0.0] 2017-11-24
+### Added
 - PNDA-3330: Add default application user configuration to the deployment manager.
 - PNDA-2389: PNDA automatically reboots instances that need rebooting following kernel updates
 - PNDA-2982: Added support for adding pyspark application dependencies
@@ -53,6 +66,7 @@ All notable changes to this project will be documented in this file.
 - PNDA-3524: remove beacons logic
 - PNDA-3323: Clean up files for all users in hdfs_cleaner
 - PNDA-3521: fix issue on push/getting DM keys
+- PNDA-3428: Daemonize HDP HBase services 
 
 ## [2.0.0] 2017-05-23
 ### Added
