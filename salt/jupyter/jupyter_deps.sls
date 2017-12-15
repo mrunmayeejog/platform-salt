@@ -21,6 +21,12 @@
 {% set dependency_name_krb5 = 'krb5-multidev_1.12+dfsg-2ubuntu5.3_amd64.deb' %}
 {% set dependency_name_libpq = 'libpq-dev_9.3.20-0ubuntu0.14.04_amd64.deb' %}
 
+dependency-installation-1:
+  pkg.installed:
+    - name: {{ pillar['libssl-dev']['package-name'] }}
+    - version: {{ pillar['libssl-dev']['version'] }}
+    - ignore_epoch: True
+
 lib_install-dependency-1:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
