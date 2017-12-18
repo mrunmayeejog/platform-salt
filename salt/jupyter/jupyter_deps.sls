@@ -77,17 +77,17 @@ lib_install-dependency-7:
 lib_install-dependency-8:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
-    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql_lib }} && rpm -ifvh --replacefiles {{ dependency_name_postgresql_lib }}
+    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql_lib }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql_lib }}
 
 lib_install-dependency-9:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
-    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql }} && rpm -ifvh --replacefiles {{ dependency_name_postgresql }}
+    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql }}
 
 lib_install-dependency-10:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
-    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql_devel }} && rpm -ifvh --replacefiles {{ dependency_name_postgresql_devel }}
+    - name: wget {{ misc_mirror_location }}/{{ dependency_name_postgresql_devel }} && rpm -ifvh --replacepkgs {{ dependency_name_postgresql_devel }}
 
 {% endif %}
 
