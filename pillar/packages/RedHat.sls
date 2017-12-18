@@ -34,6 +34,9 @@ cyrus-sasl-plain:
 g++:
   package-name: gcc-c++
   version: ""
+gcc:
+  package-name: gcc
+  version: ""
 glibc-devel:
   package-name: glibc-devel
   version: ""

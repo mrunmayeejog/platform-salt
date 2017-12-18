@@ -74,6 +74,12 @@ lib_install-dependency-7:
 {% set dependency_name_postgresql_devel = 'postgresql-devel-9.2.23-3.el7_4.x86_64.rpm' %}
 {% set dependency_name_postgresql_lib = 'postgresql-libs-9.2.23-3.el7_4.x86_64.rpm' %}
 
+dependency-install_gcc:
+  pkg.installed:
+    - name: {{ pillar['gcc']['package-name'] }}
+    - version: {{ pillar['gcc']['version'] }}
+    - ignore_epoch: True
+
 lib_install-dependency-8:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
