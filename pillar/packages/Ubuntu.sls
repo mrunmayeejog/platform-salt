@@ -104,3 +104,6 @@ wget:
 postgresql:
   package-name: postgresql
   version: ""
+libpq5:
+  package-name: libpq5
+  version: ""

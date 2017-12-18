@@ -27,6 +27,12 @@ dependency-installation-1:
     - version: {{ pillar['libssl-dev']['version'] }}
     - ignore_epoch: True
 
+dependency-installation-2:
+  pkg.installed:
+    - name: {{ pillar['libpq5']['package-name'] }}
+    - version: {{ pillar['libpq5']['version'] }}
+    - ignore_epoch: True
+
 lib_install-dependency-1:
   cmd.run:
     - cwd: {{ pnda_home_directory }}
