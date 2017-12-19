@@ -100,4 +100,4 @@ lib_install-dependency-10:
 
 jupyter-install_anaconda_deps:
   cmd.run:
-     - name: export PATH={{ anaconda_home }}/bin:$PATH;pip install --index-url {{ pip_index_url }} cm-api==14.0.0 avro==1.8.1 ipython-sql==0.3.8 sql-magic==0.0.3 pymysql==0.7.11 impyla==0.14.0 psycopg2==2.7.3.2 thrift==0.9.3
+     - name: export PATH={{ anaconda_home }}/bin:$PATH;pip install --index-url {{ pip_index_url }} cm-api==14.0.0 avro==1.8.1 ipython-sql==0.3.8 pymysql==0.7.11 impyla==0.14.0 psycopg2==2.7.3.2 thrift==0.9.3
