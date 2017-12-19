@@ -22,6 +22,12 @@ dependency-installation-libpq:
 
 {% else %}
 
+dependency-install_gcc-dep:
+  pkg.installed:
+    - name: {{ pillar['gcc']['package-name'] }}
+    - version: {{ pillar['gcc']['version'] }}
+    - ignore_epoch: True
+
 dependency-install_postgresql-libs:
   pkg.installed:
     - name: {{ pillar['postgresql-libs']['package-name'] }}
