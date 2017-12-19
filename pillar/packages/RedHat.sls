@@ -122,3 +122,12 @@ unzip:
 wget:
   package-name: wget
   version: ""
+postgresql-libs:
+  package-name: postgresql-libs
+  version: ""
+postgresql:
+  package-name: postgresql
+  version: ""
+postgresql-devel:
+  package-name: postgresql-devel
+  version: ""

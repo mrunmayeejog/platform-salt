@@ -110,3 +110,6 @@ postgresql:
 libpq5:
   package-name: libpq5
   version: ""
+libpq-dev:
+  package-name: libpq-dev
+  version: ""
