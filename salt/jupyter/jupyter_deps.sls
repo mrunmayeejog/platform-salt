@@ -1,5 +1,4 @@
 {% set pip_index_url = pillar['pip']['index_url'] %}
-{% set pnda_home_directory = pillar['pnda']['homedir'] %}
 
 {% if grains['hadoop.distro'] == 'HDP' %}
 {% set anaconda_home = '/opt/pnda/anaconda' %}
@@ -7,10 +6,6 @@
 {% set anaconda_home = '/opt/cloudera/parcels/Anaconda' %}
 {% endif %}
 
-{% set pnda_mirror = pillar['pnda_mirror']['base_url'] %}
-{% set deb_packages_path = pnda_mirror + '/mirror_deb' %}
-{% set misc_packages_path = pillar['pnda_mirror']['misc_packages_path'] %}
-{% set misc_mirror_location = pnda_mirror + misc_packages_path %}
 
 {% if grains['os'] == 'Ubuntu' %}
 
