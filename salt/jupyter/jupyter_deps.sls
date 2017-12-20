@@ -28,18 +28,6 @@ dependency-install_gcc-dep:
     - version: {{ pillar['gcc']['version'] }}
     - ignore_epoch: True
 
-dependency-install_postgresql-libs:
-  pkg.installed:
-    - name: {{ pillar['postgresql-libs']['package-name'] }}
-    - version: {{ pillar['postgresql-libs']['version'] }}
-    - ignore_epoch: True
-
-dependency-install_postgresql:
-  pkg.installed:
-    - name: {{ pillar['postgresql']['package-name'] }}
-    - version: {{ pillar['postgresql']['version'] }}
-    - ignore_epoch: True
-
 dependency-install_postgresql-devel:
   pkg.installed:
     - name: {{ pillar['postgresql-devel']['package-name'] }}
