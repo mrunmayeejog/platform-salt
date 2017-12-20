@@ -39,3 +39,4 @@ impyla==0.14.0
 psycopg2==2.7.3.2
 ipython-sql==0.3.8
 thrift==0.9.3
+sql-magic==0.0.3
