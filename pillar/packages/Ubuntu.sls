@@ -107,3 +107,12 @@ unzip:
 wget:
   package-name: wget
   version: ""
+postgresql:
+  package-name: postgresql
+  version: ""
+libpq5:
+  package-name: libpq5
+  version: ""
+libpq-dev:
+  package-name: libpq-dev
+  version: ""
