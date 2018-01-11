@@ -581,3 +581,40 @@ c.Spawner.notebook_dir = '~/jupyter_notebooks'
 
 ## The name of the PAM service to use for authentication
 #c.PAMAuthenticator.service = 'login'
+
+# Custom spawner to add user configurations
+
+from jupyterhub.auth import PAMAuthenticator
+import os, json
+from tornado import gen
+try:
+    import pamela
+except Exception as e:
+    pamela = None
+    _pamela_error = e
+
+class PNDAAuthenticator(PAMAuthenticator):
+    def pre_spawn_start(self, user, spawner):
+        """Open PAM session for user if so configured"""
+        if not self.open_sessions:
+            return
+        try:
+            username = spawner.user.name
+            homedir = os.path.expanduser('~'+username)
+            if os.path.exists(homedir):
+                os.makedirs(homedir+'/.sparkmagic', 0o755)
+                os.makedirs(homedir+'/.sparkmagic/logs', 0o755)
+                with open(os.path.join(homedir + '/.sparkmagic', 'config.json'), 'w') as fw:
+                    configs = { "session_configs": {"proxyUser": str(username)}}
+                    json.dump(configs, fw)
+                os.chmod(homedir+"/.sparkmagic/config.json", 0o644)
+                os.system("chown "+ str(username) + ":" + str(username) + " -R " + homedir + "/.sparkmagic")
+            pamela.open_session(user.name, service=self.service)
+        except pamela.PAMError as e:
+            self.log.warning("Failed to open PAM session for %s: %s", user.name, e)
+            self.log.warning("Disabling PAM sessions from now on.")
+            self.open_sessions = False
+
+
+c.JupyterHub.authenticator_class = PNDAAuthenticator
+
