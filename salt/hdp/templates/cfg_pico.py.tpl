@@ -378,6 +378,8 @@ BLUEPRINT = r'''{
                     "hadoop.proxyuser.root.groups" : "*",
                     "hadoop.proxyuser.root.hosts" : "*",
                     "hadoop.proxyuser.oozie.groups" : "*",
+                    "hadoop.proxyuser.pnda.groups" : "*",
+                    "hadoop.proxyuser.pnda.hosts" : "*",
                     "hadoop.proxyuser.oozie.hosts" : "%(cluster_name)s-hadoop-mgr-1",
                     "hadoop.security.auth_to_local" : "DEFAULT",
                     "hadoop.security.authentication" : "simple",

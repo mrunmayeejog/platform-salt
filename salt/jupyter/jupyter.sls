@@ -140,6 +140,17 @@ livy-update_configuration_hdp:
     - name: {{ livy_dir }}/conf/livy.conf
     - text: livy.spark.master = yarn-client
 
+livy-update_configuration_hdp_1:
+  file.append:
+    - name: {{ livy_dir }}/conf/livy.conf
+    - text: livy.impersonation.enabled = true
+
+livy-update_configuration_hdp_2:
+  file.append:
+    - name: {{ livy_dir }}/conf/livy.conf
+    - text: livy.superusers = pnda
+
+
 {% else %}
 livy-download:
   cmd.run:
@@ -150,6 +161,16 @@ livy-update_configuration_cdh:
   file.append:
     - name: {{ livy_dir }}/conf/livy.conf
     - text: livy.spark.master = yarn-client
+
+livy-update_configuration_cdh_1:
+  file.append:
+    - name: {{ livy_dir }}/conf/livy.conf
+    - text:  livy.impersonation.enabled = true
+
+livy-update_configuration_cdh_2:
+  file.append:
+    - name: {{ livy_dir }}/conf/livy.conf
+    - text:  livy.superusers = pnda
 {% endif %}
 
 jupyter-scala_extension_spark:
