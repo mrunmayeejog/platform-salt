@@ -233,7 +233,7 @@ HDFS_CFG = {
                 ('<property> <name>hadoop.tmp.dir</name><value>/data0/tmp/hadoop-${user.name}</value></property>\r\n\r\n'
                  '<property> \r\n<name>hadoop.proxyuser.yarn.hosts</name>\r\n<value>*</value>\r\n</property>\r\n\r\n'
                  '<property>\r\n<name>hadoop.proxyuser.yarn.groups</name>\r\n<value>*</value>\r\n</property>\r\n\r\n'
-                 '<property>\r\n<name>hadoop.proxyuser.pnda.groups</name>\r\n<value>*</value>\r\n</property>\r\n\r\n'
+                 '<property>\r\n<name>hadoop.proxyuser.pnda.hosts</name>\r\n<value>*</value>\r\n</property>\r\n\r\n'
                  '<property>\r\n<name>hadoop.proxyuser.pnda.groups</name>\r\n<value>*</value>\r\n</property>') + SWIFT_CONFIG + S3_CONFIG,
             'dfs_block_local_path_access_user': 'impala',
             'hdfs_missing_blocks_thresholds': '{"warning":"never","critical":100}'
