@@ -134,7 +134,7 @@ input {
           discover_interval => "5"
    }
    file {
-          path => ["/var/log/pnda/flink/*",
+          path => ["/var/log/pnda/flink/*"]
           add_field => {"source" => "flink"}
           sincedb_path => "{{ install_dir }}/logstash/sincedb/db"
           codec => multiline {

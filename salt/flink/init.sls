@@ -50,6 +50,12 @@ flink-copy_configurations:
       namenode: {{ namenode }}
       path: {{ archive_dir }}
 
+flink-copy_log_configurations:
+  file.managed:
+    - name: {{ flink_real_dir }}/conf/log4j-cli.properties
+    - source: salt://flink/templates/log4j-cli.properties.tpl
+    - template: jinja
+
 flink-configure_log_dir:
   file.directory:
     - name: {{ flink_real_dir }}/log
