@@ -125,22 +125,10 @@ input {
           path => ["/var/log/pnda/hadoop-yarn/container/application_*/container_*/stdout",
                    "/var/log/pnda/hadoop-yarn/container/application_*/container_*/stderr",
                    "/var/log/pnda/hadoop-yarn/container/application_*/container_*/syslog",
-                   "/var/log/pnda/hadoop-yarn/container/application_*/container_*/spark.log",
-                   "/var/log/pnda/hadoop-yarn/container/application_*/container_*/jobmanager.log",
-                   "/var/log/pnda/hadoop-yarn/container/application_*/container_*/taskmanager.log"
-                   ]
+                   "/var/log/pnda/hadoop-yarn/container/application_*/container_*/spark.log"]
           add_field => {"source" => "yarn"}
           sincedb_path => "{{ install_dir }}/logstash/sincedb/db"
           discover_interval => "5"
-   }
-   file {
-          path => ["/var/log/pnda/flink/*"]
-          add_field => {"source" => "flink"}
-          sincedb_path => "{{ install_dir }}/logstash/sincedb/db"
-          codec => multiline {
-            pattern => "^%{TIMESTAMP_ISO8601}"
-            negate => true
-            what => "previous"
    }
 
    {% for log_section in pillar['log-shipper-patterns'] %}
