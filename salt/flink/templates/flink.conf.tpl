@@ -225,3 +225,6 @@ historyserver.archive.fs.refresh-interval: 10000
 
 # The configuration below must match one of the values set in "security.kerberos.login.contexts"
 # zookeeper.sasl.login-context-name: Client
+
+# Configure log directory path for PNDA flink
+env.log.dir: /var/log/pnda/flink
