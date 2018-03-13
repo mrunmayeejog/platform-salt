@@ -1,12 +1,12 @@
 logstash:
-  version: 5.2.2
+  version: 6.2.1
 
 kibana:
-  version: 4.1.6-linux-x64
+  version: 6.2.1-linux-x86_64
   directory: /opt/pnda
 
 elasticsearch:
-  version: 1.5.0
+  version: 6.2.1
   directory: /opt/pnda
   logdir: /var/log/elasticsearch
   confdir: /etc/elasticsearch
@@ -32,10 +32,14 @@ zookeeper:
   version: 3.4.11
 
 kafka:
-  version: 0.11.0.0
+  version: 0.11.0.2
   internal_port: 9092
   replication_port: 9093
   ingest_port: 9094
+
+consul:
+  service: True
+  version: 1.0.3
 
 kafkatool:
   release_version: v0.2.0
@@ -107,8 +111,7 @@ jmxproxy:
   release_hash: "sha512=97e69d7922f6515bc5ecaa9ab7326e2d61d275dd8d419bdb2fb246ec36dbc21cb8df45881a991623f1a8785744a618198094f16f37d5b66f3029516d8824b7a1"
 
 anaconda:
-  parcel_version: "4.0.0"
-  parcel_repo: "https://repo.continuum.io/pkgs/misc/parcels/"
+  bundle_version: "5.1.0"
 
 java:
   version: "jdk-8u131-linux-x64"

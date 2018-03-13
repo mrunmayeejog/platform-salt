@@ -7,14 +7,13 @@
 {% set pnda_user  = pillar['pnda']['user'] %}
 {% set wrapper_spark_home = '/usr/' %}
 {% set features = salt['pillar.get']('features', []) %}
-{% if grains['hadoop.distro'] == 'HDP' %}
 {% set anaconda_home = '/opt/pnda/anaconda' %}
+{% if grains['hadoop.distro'] == 'HDP' %}
 {% set spark_home = '/usr/hdp/current/spark-client' %}
 {% set spark2_home = '/usr/hdp/current/spark2-client' %}
 {% set hadoop_conf_dir = '/etc/hadoop/conf' %}
 {% set livy_dir = '/usr/hdp/current/livy-server' %}
 {% else %}
-{% set anaconda_home = '/opt/cloudera/parcels/Anaconda' %}
 {% set spark_home = '/opt/cloudera/parcels/CDH/lib/spark' %}
 {% set hadoop_conf_dir = '/etc/hadoop/conf.cloudera.yarn01' %}
 {% set packages_server = pillar['packages_server']['base_uri'] %}
@@ -38,7 +37,7 @@ dependency-install_dev_krb:
     - ignore_epoch: True
 {% endif %}
 
-{% if grains['os'] == 'RedHat' %}
+{% if grains['os'] in ('RedHat', 'CentOS') %}
 dependency-install_krb5_devel:
   pkg.installed:
     - name: {{ pillar['krb5-devel']['package-name'] }}
@@ -203,7 +202,7 @@ livy-conf_service:
 {% if grains['os'] == 'Ubuntu' %}
     - name: /etc/init/livy.conf
     - source: salt://jupyter/templates/livy.conf.tpl
-{% elif grains['os'] == 'RedHat' %}
+{% elif grains['os'] in ('RedHat', 'CentOS') %}
     - name: /usr/lib/systemd/system/livy.service
     - source: salt://jupyter/templates/livy.service.tpl
 {% endif %}
@@ -214,7 +213,7 @@ livy-conf_service:
         spark_home: {{ spark_home }}
         hadoop_conf_dir: {{ hadoop_conf_dir }}
 
-{% if grains['os'] == 'RedHat' %}
+{% if grains['os'] in ('RedHat', 'CentOS') %}
 livy-systemctl_reload:
   cmd.run:
     - name: /bin/systemctl daemon-reload; /bin/systemctl enable livy
