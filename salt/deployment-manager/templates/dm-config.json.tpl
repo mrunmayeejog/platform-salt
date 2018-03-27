@@ -25,6 +25,10 @@
 
 {% set km_link = salt['pnda.generate_http_link']('kafka_manager',':'+km_port|string+'/clusters/'+pnda_cluster) %}
 
+{%- set flink_history_server_port = salt['pillar.get']('flink:history_server_port', 8082) -%}
+{%- set fh_nodes = salt['pnda.get_hosts_for_role']('flink') -%}
+{%- set flink_history_server = fh_nodes[0]+':'+flink_history_server_port|string -%}
+
 {%- set jupyter_nodes = salt['pnda.get_hosts_for_role']('jupyter') -%}
 {%- set jupyter_host = '' -%}
 {%- if jupyter_nodes is not none and jupyter_nodes|length > 0 -%}
@@ -48,6 +52,7 @@
 {% set app_packages_hdfs_path = pillar['pnda']['app_packages']['app_packages_hdfs_path'] -%}
 
 {% set policy_file_link = pillar['resource_manager']['path'] + pillar['resource_manager']['policy_file'] %}
+{%- set flink_lib_dir = pillar['pnda']['homedir'] + '/flink-' + pillar['flink']['release_version'] + '/lib' -%}
 
 {
     "environment": {
@@ -57,6 +62,7 @@
         "hadoop_manager_password" : "{{ cm_password }}",
         "cluster_root_user" : "{{ os_user }}",
         "cluster_private_key" : "{{ keys_directory }}/dm.pem",
+        "flink_history_server": "{{ flink_history_server }}",
         "kafka_zookeeper" : "{{ kafka_zookeepers|join(',') }}",
         "kafka_brokers" : "{{ kafka_brokers|join(',') }}",
         "opentsdb" : "{{ opentsdb_host }}",
@@ -66,7 +72,8 @@
         "jupyter_host": "{{ jupyter_host }}",
         "jupyter_notebook_directory": "jupyter_notebooks",
         "app_packages_hdfs_path":"{{ app_packages_hdfs_path }}",
-        "queue_policy": "{{ policy_file_link }}"
+        "queue_policy": "{{ policy_file_link }}",
+        "flink_lib_dir": "{{ flink_lib_dir }}"
     },
     "config": {
         "stage_root": "stage",
