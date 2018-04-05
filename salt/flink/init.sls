@@ -60,6 +60,12 @@ flink-copy_configurations:
       parallelism: {{ flavor_cfg.parallelism }}
       taskmanager_mem_preallocate: {{ flavor_cfg.taskmanager_mem_preallocate }}
 
+flink-copy_flink_cli_script:
+  file.managed:
+    - name: {{ flink_real_dir }}/bin/flink
+    - source: salt://flink/templates/flink.tpl
+    - mode: 755
+
 flink-configure_log_dir:
   file.directory:
     - name: {{ flink_real_dir }}/log
