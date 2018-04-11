@@ -8,6 +8,12 @@
 {% set logstash_package = 'logstash-' + logstash_version + '.tar.gz' %}
 {% set logstash_url = mirror_location + logstash_package %}
 
+{% if grains['os'] == 'Ubuntu' %}
+{% set group_name = pillar['logstash']['ubuntu_grp_name'] %}
+{% elif grains['os'] in ('RedHat', 'CentOS') %}
+{% set group_name = pillar['logstash']['rhel_centos_grp_name'] %}
+{% endif %}
+
 include:
   - java
 
@@ -45,7 +51,10 @@ logserver-copy_configuration:
 logserver-copy_logrotate:
   file.managed:
     - name: /etc/logrotate.d/pnda
-    - source: salt://logserver/logserver_files/logrotate.conf
+    - source: salt://logserver/logserver_templates/logrotate.conf.tpl
+    - template: jinja
+    - context:
+        group_name: {{ group_name }}
 
 logserver-update-crontab:
   cron.present:

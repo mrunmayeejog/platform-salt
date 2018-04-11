@@ -1,5 +1,7 @@
 logstash:
   version: 6.2.1
+  ubuntu_grp_name: "syslog"
+  rhel_centos_grp_name: "root"
 
 kibana:
   version: 6.2.1-linux-x86_64
